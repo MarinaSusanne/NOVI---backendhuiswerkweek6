@@ -13,6 +13,7 @@ public class Pet {
         this.species = species;
     }
 
+
     public String getName() {
         return name;
     }
@@ -22,7 +23,7 @@ public class Pet {
     }
 
     public int getAge() {
-        return age;
+       return age;
     }
 
     public void setAge(int age) {
@@ -37,11 +38,7 @@ public class Pet {
         this.species = species;
     }
 
-    public Person getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Person owner) {
+    public void addOwner (Person owner){
         this.owner = owner;
     }
 }
