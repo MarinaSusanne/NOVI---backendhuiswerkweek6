@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Person {
 
+    //instance variables
     private String name;
     private String middleName;
     private String lastName;
@@ -12,52 +13,13 @@ public class Person {
     private int age;
     private Person mother;
     private Person father;
-    private List<Person> siblings;
-
-    // methode 2 inst en declaratie in 1
+    private List<Person> siblings = new ArrayList<>();
     private List<Person> children = new ArrayList<>();
-
-    private List<Pet> pets;
-
-    public void addParents(Person mother, Person father){
-        setMother(mother);
-        setFather(father);
-    }
-
-    public void addChild (Person child){
-        children.add(child);
-    }
-
-    public void addSiblings (Person sibling){
-        siblings.add(sibling);
-    }
-
-    public List<Person> getGrandChildren (){
-        ArrayList<Person> grandChildren = new ArrayList<>();
-        for (Person child: children){
-            for(Person grandChild : child.getChildren()){
-                grandChildren.addAll(grandChild.getChildren());
-            }
-        }
-        return grandChildren;
-    }
-
-    public void addPet (Pet pet){
-        pets.add(pet);
-    }
+    private List<Pet> pets = new ArrayList<>();
 
 
-    public List<Pet> getPets() {
-        return pets;
-    }
-
-    public void setPets(List<Pet> pets) {
-        this.pets = pets;
-    }
-
-   //met private constructor
+    //constructor
     public Person(String name, String middleName, String lastName, String sex, int age) {
-        this();
         this.name = name;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -72,12 +34,39 @@ public class Person {
         this.age = age;
     }
 
-    private Person(){
-        pets = new ArrayList<>();
-        children = new ArrayList<>();
-        siblings = new ArrayList<>();
+
+    //methodes
+
+    public void addParents(Person mother, Person father) {
+        setMother(mother);
+        setFather(father);
     }
 
+    public void addChild(Person child) {
+        children.add(child);
+    }
+
+    public void addSiblings(Person sibling) {
+        siblings.add(sibling);
+    }
+
+    public void addPet(Pet pet) {
+        pets.add(pet);
+    }
+
+
+    //als je add hebt heb je dan wel getters en setters? --> ja want bij set pas je de hele lijst aan, bij add voeg je toe
+
+
+    public List<Person> getGrandChildren() {
+        ArrayList<Person> grandChildren = new ArrayList<>();
+        for (Person child : getChildren()) {
+            for (Person grandchild : child.getChildren()) {
+                grandChildren.add(grandchild);
+            }
+            return grandChildren;
+        }
+    }
 
     public String getName() {
         return name;
@@ -143,6 +132,14 @@ public class Person {
         this.siblings = siblings;
     }
 
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
+    }
+
     public List<Person> getChildren() {
         return children;
     }
@@ -151,4 +148,16 @@ public class Person {
         this.children = children;
     }
 
+
+    public List<Person> getNieces() {
+        List<Person> nieces = new ArrayList<>();
+        for (Person sibling : getSiblings()) {
+            for (Person child : sibling.getChildren()) {
+                if (child.getSex() == "female") {
+                    nieces.add(child);
+                }
+            }
+        }
+        return nieces;
+    }
 }

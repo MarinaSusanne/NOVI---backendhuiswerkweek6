@@ -1,6 +1,8 @@
 package org.example;
 
+
 public class Pet {
+
 
     private String name;
     private int age;
@@ -37,11 +39,11 @@ public class Pet {
         this.species = species;
     }
 
-    public Person getOwner() {
-        return owner;
-    }
-
     public void setOwner(Person owner) {
         this.owner = owner;
+    }
+
+    public Person getOwner() {
+        return owner;
     }
 }
